@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.um.dao.UserDao">
+
+    <insert id="saveUser">
+        insert into t_user values(null,#{name},#{password},#{sex},#{photo},#{birthday},#{email})
+    </insert>
+    
+    <select id="queryUserByNameAndPassword" resultType="com.baizhi.um.entity.User">
+        select * from t_user where name=#{name} and password=#{password}
+    </select>
+
+    <select id="queryUserById" resultType="com.baizhi.um.entity.User">
+        select * from t_user where id = #{id}
+    </select>
+
+    <delete id="deleteByUserId">
+        delete from t_user where id =#{id}
+    </delete>
+    
+    <delete id="deleteByUserIds">
+        delete from t_user where id in
+        <foreach collection="ids" item="id" open="(" close=")"
+                 separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    
+    <select id="queryUserByPage" resultType="com.baizhi.um.entity.User">
+        select * from t_user where #{column} like concat('%',#{value},'%') limit #{offset},#{limit}
+    </select>
+
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(*) from t_user where #{column} = #{value}
+    </select>
+
+    <update id="updateUser">
+        update t_user
+        set
+            name = #{name},
+            password = #{password},
+            photo = #{photo},
+            sex = #{sex},
+            birthday = #{birthday},
+            email = #{email}
+        where
+            id = #{id}
+    </update>
+</mapper>
