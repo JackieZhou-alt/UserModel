@@ -28,11 +28,11 @@
     </delete>
     
     <select id="queryUserByPage" resultType="com.baizhi.um.entity.User">
-        select * from t_user where #{column} like concat('%',#{value},'%') limit #{offset},#{limit}
+        select * from t_user where ${column} like concat('%',#{value},'%') limit #{offset},#{limit}
     </select>
 
     <select id="queryCount" resultType="java.lang.Integer">
-        select count(*) from t_user where #{column} = #{value}
+        select count(*) from t_user where ${column} = #{value}
     </select>
 
     <update id="updateUser">

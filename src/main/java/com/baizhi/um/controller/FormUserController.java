@@ -30,11 +30,13 @@ public class FormUserController {
 
     @PutMapping(value = "/updateUser")
     public void updateUser(User user,MultipartFile multipartFile) throws IOException{
-        userService.updateUser(user);
+        userService.updateUser(new User(10, "zhangsan6", "123456", "a.png", 0, new Date(), "123@qq.com"));
     }
 
     @DeleteMapping(value = "/deleteUserByIds")
-    public void delteUserByIds(Integer[] ids){}
+    public void deleteUserByIds(Integer[] ids){
+        userService.deleteByUserIds(ids);
+    }
 
     @GetMapping(value = "/queryUserByPage")
     public List<User> queryUserByPage(@RequestParam(value = "pageIndex",defaultValue = "1")

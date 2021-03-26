@@ -39,12 +39,13 @@ public class UserServiceTest {
 
     @Test
     public void testDeleteByUserIds(){
-
+        Integer[] ids = {new Integer(6),new Integer(7)};
+        userService.deleteByUserIds(ids);
     }
 
     @Test
     public void testQueryUserByPage(){
-        List<User> users = userService.queryUserByPage(0, 4, "name", "");
+        List<User> users = userService.queryUserByPage(1, 4, "name", "zhang");
         users.forEach(user -> System.out.println(user));
     }
     @Test

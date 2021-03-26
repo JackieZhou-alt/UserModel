@@ -2,9 +2,11 @@ package com.baizhi.um.dao;
 
 import com.baizhi.um.entity.User;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Component
 public interface UserDao {
     /**
      * 添加用户
@@ -37,7 +39,7 @@ public interface UserDao {
      * 根据主键删除多个用户
      * @param ids 删除需要的所有id
      */
-    void deleteByUserIds(Integer[] ids);
+    void deleteByUserIds(@Param("ids") Integer[] ids);
     //通过动态sql的方式完成批量删除：拼接一个条件where id in (1,12,22)
 
     /**

@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> queryUserByPage(Integer pageIndex, Integer pageSize, String column, Object value) {
-        List<User> users = userDao.queryUserByPage(pageIndex, pageSize, column, value);
+        List<User> users = userDao.queryUserByPage((pageIndex-1)*pageSize, pageSize, column, value);
         return users;
     }
 
